@@ -1,6 +1,6 @@
 # Entity Structure Brief — NUTMEG / Sendall Holding
 
-**Status:** Revised 2026-08-24 — fundraising ruled out, recommendation changed
+**Status:** Revised 2026-08-24 — no raise; owner is a US citizen; §5 corrected
 **Prepared:** 2026-08-23 · **Revised:** 2026-08-24
 **Not legal or tax advice.** This is a structuring analysis to take *to* a
 Caribbean-competent corporate lawyer, not a substitute for one.
@@ -113,33 +113,52 @@ is explicitly rejected.
   selected list of countries, independent of where you are incorporated. Launch
   Grenada-only, expand by territory.
 
-## 5. Fundraising: resolved — no raise
+## 5. Fundraising: resolved — no raise. Owner is a US citizen.
 
-**Decision taken:** NUTMEG is not raising venture capital.
+**Two facts established since this brief was first written:**
 
-This settles what was previously the most consequential open question, and it
-resolves it *against* the US entity. The Wyoming/Delaware analysis existed to
-keep a future priced round clean. With no round coming, that entity is carrying
-cost and risk with nothing left to justify it:
+1. NUTMEG is **not raising venture capital.** This settles the
+   Wyoming-vs-Delaware question — there is no round to keep clean.
+2. The owner is a **US citizen.** This changes the reasoning substantially, and
+   corrects part of what this section originally said.
 
-- **Form 5472 exposure.** A foreign-owned single-member US LLC must file Form
-  5472 with a pro-forma 1120 annually, even with zero US income and zero US
-  activity. The penalty for failure to file is **$25,000**. That is a permanent
-  annual liability attached to an entity that would exist only for optics.
-  *(Confirm specifics with a US tax advisor — but budget for it as real.)*
-- **The money-transmission problem (§3.3) stops being worth solving.** The only
-  reason to accept it was investor-readiness.
-- Two registrations, two sets of books, an intercompany agreement, and transfer
-  pricing hygiene — all for no remaining benefit.
+### 5.1 Correction — the Form 5472 argument is withdrawn
 
-**Revised recommendation: register in Grenada only. Do not form a US entity.**
+An earlier version of this section argued against a US entity on **Form 5472**
+grounds: $25,000 annually for a foreign-owned single-member LLC. **That does not
+apply.** Form 5472 requires a 25% ***foreign*** shareholder. A Wyoming LLC owned
+by a US citizen is not foreign-owned. No Form 5472.
+
+### 5.2 What is true instead
+
+**Choosing Grenada does not reduce US tax exposure — it never could.** The US
+taxes citizens on worldwide income wherever they live and wherever the company
+sits. The obligations follow the person, not the entity.
+
+So Grenada is right for **operational** reasons — WiPay onboarding, ECCU
+regulatory footing, app store enrollment, correct data controller — and not for
+US tax reasons. The US question is a separate axis entirely: **how the Grenadian
+entity is classified for US tax**, which is a choice worth preserving.
+
+**That choice can be destroyed by picking the wrong Grenadian entity form.**
+Treas. Reg. §301.7701-2(b)(8) lists foreign entity types that are permanently
+corporations for US tax, with no check-the-box option ever. Commonwealth
+Caribbean jurisdictions appear on that list. Grenada's entry could not be
+verified from this environment.
+
+> **This must be resolved before registration.** See
+> `05-us-citizen-owner-tax.md` §3.1 — it is the most consequential irreversible
+> decision in the plan and costs nothing to get right.
+
+**The recommendation is unchanged: register in Grenada only, own it directly.**
+The reasoning is in `05` §4.
 
 ---
 
-## 6. Recommended structure — single Grenadian company
+## 6. Recommended structure — single Grenadian company, owned directly
 
 ```
-        NUTMEG (Grenada) Ltd.
+        NUTMEG (Grenada) Ltd.        ← owned directly by the founder
         ├── owns IP, brand and source
         ├── holds the Apple + Google developer accounts
         ├── contracts AWS and Twilio; is the applicant on funding programs
@@ -149,36 +168,30 @@ cost and risk with nothing left to justify it:
         └── is the data controller for Grenadian users
 ```
 
-**What this wins:**
+**"Sendall Holding" stays a brand umbrella across ventures, not an ownership
+chain.** It costs nothing, carries no cross-border reporting, and keeps NUTMEG,
+SAUTERA and CLIVE legally separate rather than linking their liability. Full
+reasoning in `05` §4.
+
+**What this wins operationally:**
 
 | | Effect |
 |---|---|
 | WiPay onboarding | Blocker disappears — a local company is what they expect |
 | ECCU / GARFIN | Regulated activity sits under the regulator that governs it |
-| EIN bottleneck | **Eliminated.** No US entity, no SS-4, no multi-week wait |
-| Form 5472 | Not applicable |
-| Data protection | Grenadian controller for Grenadian users — the clean answer |
-| Books | One entity, one set |
+| EIN | Not needed — no US entity in the chain |
+| Data protection | Grenadian controller for Grenadian users |
+| Liability | Ventures stay separate |
 
-**What it costs:** very little. App store distribution does not require a US
-entity (see `04-appstore-enrollment-verified.md`), and territory targeting is
-independent of where you incorporate — ship Grenada first, then the OECS, then
-wherever the stores reach.
+**What it does not win:** any reduction in US tax exposure. That is unavoidable
+and is managed through entity classification, not jurisdiction — see `05`.
 
-### 6.1 The one thing that could pull it back
+### 6.1 The one thing that could pull a US entity back in
 
-If the Twilio Searchlight program turns out to be restricted to US-domiciled
-companies, that is the only remaining argument for a US entity — and it is a weak
-one. A credit program is not worth a $25,000 annual filing exposure. Ask them
-(§8) before treating it as a constraint.
-
-### 6.2 Adding a holding company later
-
-If NUTMEG is ever sold, or you later decide to raise after all, inserting a
-holding company above a Grenadian operating company is a normal, well-trodden
-transaction. Doing it *then* costs less than carrying the structure for years
-beforehand — and by then the entity will have revenue and history that make the
-structuring straightforward.
+If the Twilio Searchlight program is restricted to US-domiciled companies, that
+is the only remaining argument — and it is weak. Ask them (§8) before treating
+it as a constraint. Sendall Holding LLC already exists and could serve as the
+applicant without owning NUTMEG.
 
 ## 7. Name clearance — check before spending on brand
 
@@ -213,11 +226,19 @@ importance; items about the US entity are gone.
       licensing or registration under ECCU/GARFIN rules?
 - [ ] **Email twiliostartups@twilio.com:** does the applying entity's
       jurisdiction affect Searchlight eligibility, and what is the deadline?
+- [ ] **US international tax specialist** — screen on Forms 5471/8858 and §962.
+      Ask first: is Grenada on the §301.7701-2(b)(8) per se list, and which
+      Grenadian entity form preserves the check-the-box option? **This gates
+      registration** — see `05` §3.1.
 - [ ] **Trademark clearance** on NUTMEG in target classes/territories (§7)
-- [ ] Register the company in Grenada
+- [ ] Register the company in Grenada — in the entity form the specialist names
 - [ ] D-U-N-S Number — check whether one already exists before requesting
 - [ ] Apple + Google organization developer accounts
 - [ ] Then submit the applications in `02` and `03`
 
-**No longer applicable:** US entity formation, EIN / SS-4, Form 5472, choosing
-between Wyoming LLC and Delaware C-Corp, intercompany agreements.
+**No longer applicable:** US entity formation, EIN / SS-4, choosing between
+Wyoming LLC and Delaware C-Corp, intercompany agreements.
+
+**Applies regardless of structure, because the owner is a US citizen:** FBAR on
+the Grenadian bank account, Form 8938, worldwide income on Form 1040, and either
+Form 8858 or Form 5471 depending on the classification chosen. See `05`.
