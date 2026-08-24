@@ -1,7 +1,7 @@
 # Entity Structure Brief — NUTMEG / Sendall Holding
 
-**Status:** Decision required before either funding application is submitted
-**Prepared:** 2026-08-23
+**Status:** Revised 2026-08-24 — fundraising ruled out, recommendation changed
+**Prepared:** 2026-08-23 · **Revised:** 2026-08-24
 **Not legal or tax advice.** This is a structuring analysis to take *to* a
 Caribbean-competent corporate lawyer, not a substitute for one.
 
@@ -77,31 +77,29 @@ is much harder to argue.
 
 ---
 
-## 4. The app store timeline nobody budgets for
+## 4. The app store timeline
 
-The chain to a live listing is serial, and two links are slow:
+With no US entity, the chain shortens considerably — the EIN, previously the
+bottleneck, drops out entirely:
 
 ```
-Wyoming LLC formation        ~1-3 business days (expedited)
+Grenada company registration
         ↓
-EIN from IRS                 ← THE BOTTLENECK
+Domain + live website + branded email    ← START THIS FIRST, it blocks Apple
         ↓
-D-U-N-S number               ~1-5 business days (free; paid "expedite" exists)
+D-U-N-S number            (Apple says ~5 business days; plan for weeks — see 04)
         ↓
-Apple Developer Program      ~1-4 weeks verification for organizations
-Google Play Developer        ~2-5 days, plus org verification
+Apple Developer Program, organization
+Google Play Developer, organization + Developer Verification
         ↓
-App review (S-21)            days, plus rejection cycles
+App review  ·  S-21
 ```
 
-**The EIN is the bottleneck if no member has a US SSN or ITIN.** The online
-instant-EIN path requires one. Without it, Form SS-4 goes by fax or mail and
-realistically takes several weeks — historically much longer at times. Everything
-downstream waits on it.
-
-**Action:** start the EIN the same week the LLC is formed. Do not sequence it
-after other setup work. If any founder or officer holds a US SSN/ITIN, use that
-person as the responsible party and take the same-day path instead.
+Apple's organization requirements and the D-U-N-S mechanics are quoted from
+primary sources in `04-appstore-enrollment-verified.md`. Two of them are real
+work rather than paperwork: Apple requires a **publicly available, functional
+website** on your own domain, and a **work email on that domain**. A parking page
+is explicitly rejected.
 
 ### 4.1 Two app store specifics worth knowing now
 
@@ -112,82 +110,75 @@ person as the responsible party and take the same-day path instead.
   only be spent on bus rides. Prepare the reviewer-facing explanation before
   submission rather than arguing it after rejection.
 - **Territory restriction works in your favour.** Both stores let you ship to a
-  selected list of countries. Launch Grenada-only, expand by territory. Every
-  additional territory adds tax forms and, eventually, local consumer and data
-  obligations — so let the entity structure catch up before widening the list.
+  selected list of countries, independent of where you are incorporated. Launch
+  Grenada-only, expand by territory.
+
+## 5. Fundraising: resolved — no raise
+
+**Decision taken:** NUTMEG is not raising venture capital.
+
+This settles what was previously the most consequential open question, and it
+resolves it *against* the US entity. The Wyoming/Delaware analysis existed to
+keep a future priced round clean. With no round coming, that entity is carrying
+cost and risk with nothing left to justify it:
+
+- **Form 5472 exposure.** A foreign-owned single-member US LLC must file Form
+  5472 with a pro-forma 1120 annually, even with zero US income and zero US
+  activity. The penalty for failure to file is **$25,000**. That is a permanent
+  annual liability attached to an entity that would exist only for optics.
+  *(Confirm specifics with a US tax advisor — but budget for it as real.)*
+- **The money-transmission problem (§3.3) stops being worth solving.** The only
+  reason to accept it was investor-readiness.
+- Two registrations, two sets of books, an intercompany agreement, and transfer
+  pricing hygiene — all for no remaining benefit.
+
+**Revised recommendation: register in Grenada only. Do not form a US entity.**
 
 ---
 
-## 5. Wyoming LLC vs. Delaware C-Corp — the fundraising fork
-
-Applying to startup accelerator programs signals an intent to raise. If that
-intent is real, note that:
-
-- US venture investors almost universally require a **Delaware C-corporation**.
-  Priced rounds and standard SAFEs assume it.
-- Converting an LLC to a Delaware C-corp later is routine but not free — legal
-  fees, and potentially a taxable event depending on how appreciated the entity
-  is by then.
-- An LLC's pass-through treatment can create personal filing obligations for
-  members in their own jurisdictions.
-
-**Decide now which of these you are:**
-
-| If you intend to… | Form |
-|---|---|
-| Bootstrap, keep control, no institutional raise | Wyoming LLC |
-| Raise from US VCs or accelerators within ~24 months | Delaware C-Corp from the start |
-
-Neither is wrong. Choosing Wyoming LLC *by default* and discovering the mismatch
-during a term sheet is the expensive outcome.
-
----
-
-## 6. Recommended structure
-
-Subject to counsel, the structure that fits what NUTMEG actually does:
+## 6. Recommended structure — single Grenadian company
 
 ```
-        Sendall Holding  (US — Wyoming LLC or Delaware C-Corp)
-        ├── owns IP, brand, source code
-        ├── holds app store developer accounts
-        ├── contracts AWS, Twilio, and receives program credits
-        └── is the entity named on funding applications
-                    │
-                    │ IP licence + services agreement
-                    ▼
-        NUTMEG (Grenada) Ltd.  (operating subsidiary)
-        ├── contracts passengers, drivers, schools
+        NUTMEG (Grenada) Ltd.
+        ├── owns IP, brand and source
+        ├── holds the Apple + Google developer accounts
+        ├── contracts AWS and Twilio; is the applicant on funding programs
+        ├── contracts passengers, drivers and schools
         ├── holds the WiPay merchant relationship + local bank account
-        ├── carries ECCU/GARFIN regulatory exposure
-        └── is the data controller for Grenada residents
+        ├── carries the ECCU / GARFIN regulatory footing
+        └── is the data controller for Grenadian users
 ```
 
-**Why this shape:**
-- Funds never touch the US entity → the §3.3 problem largely disappears.
-- WiPay onboards a local company → the §3.2 blocker disappears.
-- IP and equity stay in a jurisdiction investors and acquirers understand.
-- Data protection obligations for Grenadian users sit with a Grenadian controller,
-  which is the cleaner answer under Grenada's data protection regime and aligns
-  with the OECS compliance posture already assumed in `data-governance`.
+**What this wins:**
 
-**Costs to accept:** two formations, two sets of books, an intercompany
-agreement, and transfer-pricing hygiene between them. Meaningful but ordinary.
+| | Effect |
+|---|---|
+| WiPay onboarding | Blocker disappears — a local company is what they expect |
+| ECCU / GARFIN | Regulated activity sits under the regulator that governs it |
+| EIN bottleneck | **Eliminated.** No US entity, no SS-4, no multi-week wait |
+| Form 5472 | Not applicable |
+| Data protection | Grenadian controller for Grenadian users — the clean answer |
+| Books | One entity, one set |
 
-### If cash is tight — the phased path
+**What it costs:** very little. App store distribution does not require a US
+entity (see `04-appstore-enrollment-verified.md`), and territory targeting is
+independent of where you incorporate — ship Grenada first, then the OECS, then
+wherever the stores reach.
 
-1. **Now:** form the US entity only. It is enough to open both funding
-   applications and to start the EIN → D-U-N-S → developer account chain.
-2. **Before any real money moves** (before S-23 soft launch, and definitely
-   before school wallets go live with real parent funds): form the Grenada
-   operating company and move the customer-facing contracts and WiPay
-   relationship into it.
+### 6.1 The one thing that could pull it back
 
-The hard line: **do not take custody of a parent's money in a school wallet
-through a Wyoming LLC with no local regulatory footing.** That is the one
-sequencing error here that is genuinely difficult to unwind.
+If the Twilio Searchlight program turns out to be restricted to US-domiciled
+companies, that is the only remaining argument for a US entity — and it is a weak
+one. A credit program is not worth a $25,000 annual filing exposure. Ask them
+(§8) before treating it as a constraint.
 
----
+### 6.2 Adding a holding company later
+
+If NUTMEG is ever sold, or you later decide to raise after all, inserting a
+holding company above a Grenadian operating company is a normal, well-trodden
+transaction. Doing it *then* costs less than carrying the structure for years
+beforehand — and by then the entity will have revenue and history that make the
+structuring straightforward.
 
 ## 7. Name clearance — check before spending on brand
 
@@ -209,15 +200,24 @@ and payout features sit in adjacent classes.
 
 ## 8. Decision checklist
 
-Settle these in order. Items 1 and 2 can invalidate the rest.
+Revised for the Grenada-only structure. Items 1 and 2 are unchanged in
+importance; items about the US entity are gone.
 
-- [ ] **Email WiPay:** will you onboard a US (Wyoming) entity for Grenada
-      operations, or is a local company required?
+- [ ] **Domain + live website + branded email.** Gates Apple enrollment, and is
+      expected by AWS Activate and Twilio. Depends on nothing else. **Start now.**
+- [ ] **Check the country dropdowns** in Apple's and Google's signup flows —
+      ten minutes, and it settles enrollment eligibility for certain. See
+      `04-appstore-enrollment-verified.md` §6.
+- [ ] **Email WiPay:** confirm onboarding requirements for a Grenadian company.
 - [ ] **Local counsel:** does the school wallet / driver payout model require
       licensing or registration under ECCU/GARFIN rules?
-- [ ] **Fundraise intent:** Wyoming LLC or Delaware C-Corp? (§5)
-- [ ] **Responsible party for the EIN:** does anyone hold a US SSN/ITIN?
-- [ ] **Trademark clearance** on NUTMEG in target classes/territories
-- [ ] Form the entity
-- [ ] EIN → D-U-N-S → Apple + Google organization accounts (start immediately)
-- [ ] Then, and only then, submit the applications in `02` and `03`
+- [ ] **Email twiliostartups@twilio.com:** does the applying entity's
+      jurisdiction affect Searchlight eligibility, and what is the deadline?
+- [ ] **Trademark clearance** on NUTMEG in target classes/territories (§7)
+- [ ] Register the company in Grenada
+- [ ] D-U-N-S Number — check whether one already exists before requesting
+- [ ] Apple + Google organization developer accounts
+- [ ] Then submit the applications in `02` and `03`
+
+**No longer applicable:** US entity formation, EIN / SS-4, Form 5472, choosing
+between Wyoming LLC and Delaware C-Corp, intercompany agreements.
